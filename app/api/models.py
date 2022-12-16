@@ -22,18 +22,22 @@ def validate_folder_name_length(value: str):
         )
 
 
+def catalog_path(instance, filename):
+    return f"{instance.catalog.name}/{instance.name}{splitext(filename)[-1]}"
+
+
 class User(AbstractUser):
     fio = models.CharField(max_length=256, default='', verbose_name='ФИО')
     department = models.CharField(max_length=256, default='', verbose_name='Отдел')
     birth_date = models.DateField(auto_now=True, verbose_name='Дата рождения')
     extended_access = models.BooleanField(default=0, verbose_name='Расширенный доступ')
 
-    def __str__(self):
-        return str(self.fio)
-
     class Meta:
         verbose_name = 'Сотрудник'
         verbose_name_plural = 'Сотрудники'
+
+    def __str__(self):
+        return str(self.fio)
 
 
 class Catalog(models.Model):
@@ -44,9 +48,8 @@ class Catalog(models.Model):
         verbose_name = 'Каталог'
         verbose_name_plural = 'Каталоги'
 
-
-def catalog_path(instance, filename):
-    return f"{instance.catalog.name}/{instance.name}{splitext(filename)[-1]}"
+    def __str__(self):
+        return str(self.name)
 
 
 class Document(models.Model):
@@ -62,3 +65,6 @@ class Document(models.Model):
     class Meta:
         verbose_name = 'Документ'
         verbose_name_plural = 'Документы'
+
+    def __str__(self):
+        return str(self.name)

@@ -12,11 +12,18 @@ class UserAdmin(admin.ModelAdmin):
     readonly_fields = ('is_staff',)
 
 
-admin.site.register(Catalog)
-admin.site.register(Document)
+@admin.register(Catalog)
+class CatalogAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'author',)
+    list_display_links = ('id',)
+    list_filter = ('author',)
+    fields = ('name', 'author',)
 
-# @admin.register(Catalog)
-# class CatalogAdmin(admin.ModelAdmin):
-#     list_display = ('id', 'name', 'author',)
-#     list_display_links = ('id', 'name',)
-#     fields = ('name', 'author',)
+
+@admin.register(Document)
+class DocumentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'catalog', 'name', 'is_private', 'disk_path',)
+    list_display_links = ('id',)
+    list_editable = ('is_private',)
+    list_filter = ('catalog',)
+    fields = ('catalog', 'name', 'is_private', 'disk_path',)
