@@ -13,6 +13,7 @@ class UserAdmin(admin.ModelAdmin):
     readonly_fields = ('is_staff',)
 
 
+
 # @admin.register(Catalog)
 # class CatalogAdmin(admin.ModelAdmin):
 #     list_display = ('id', 'name', 'author',)
