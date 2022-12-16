@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import *
+from .models import User, Catalog, Document
 
 
 @admin.register(User)
@@ -12,6 +12,8 @@ class UserAdmin(admin.ModelAdmin):
     readonly_fields = ('is_staff',)
 
 
+admin.site.register(Catalog)
+admin.site.register(Document)
 
 # @admin.register(Catalog)
 # class CatalogAdmin(admin.ModelAdmin):

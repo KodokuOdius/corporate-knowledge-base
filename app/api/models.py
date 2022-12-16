@@ -50,7 +50,7 @@ def catalog_path(instance, filename):
 
 
 class Document(models.Model):
-    catalog_id = models.ForeignKey('Catalog', on_delete=models.CASCADE, verbose_name='Каталог')
+    catalog = models.ForeignKey('Catalog', on_delete=models.CASCADE, verbose_name='Каталог')
     author = models.ForeignKey('User', on_delete=models.CASCADE, verbose_name='Автор')
     is_private = models.BooleanField(default=0, verbose_name='Ограниченный доступ')
 
