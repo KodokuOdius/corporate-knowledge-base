@@ -135,14 +135,17 @@ class AuthUserView(APIView):
 
         email = request.data.get('email')
         password = request.data.get('password')
-        print(password)
-        user = authenticate(email=email, password=password)
+        username = User.objects.get(email=email).username
+
+        user = authenticate(username=username, password=password)
         if user is None:
             return Response({'Forbiden': 'Incorrect password or email'}, status=HTTP_403_FORBIDDEN)
 
         self.request.session.create()
+        print('===========')
+        print(self.request.user.id)
 
-        return Response(self.serializer_class(user).data, status=HTTP_200_OK)
+        return Response(UserSerializer(user).data, status=HTTP_200_OK)
 
 
 class LogOutView(APIView):
