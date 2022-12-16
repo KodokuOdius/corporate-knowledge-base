@@ -5,7 +5,7 @@ from .models import User, Catalog, Document
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['fio', 'email', 'department', 'extended_access']
+        fields = '__all__'
 
 
 class CreateUserSerializer(serializers.ModelSerializer):

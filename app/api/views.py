@@ -27,7 +27,7 @@ class ListCatalogsView(ListAPIView):
 class CreateCatalogView(APIView):
     serializer_class = CreateCatalogSerializer
     
-    def post(self, request: Request, format=None):
+    def post(self, request, format=None):
         if not self.request.session.exists(self.request.session.session_key):
             return Response({'Bad Request': 'Unauthrized'}, status=HTTP_401_UNAUTHORIZED)
 
@@ -93,7 +93,7 @@ class CreateUserView(APIView):
 
             new_user = User(
                 email=email, fio=fio,
-                username=fio,
+                username=email,
                 department=department,
                 birth_date=birth_date,
                 extended_access=extended_access,
@@ -135,15 +135,14 @@ class AuthUserView(APIView):
 
         email = request.data.get('email')
         password = request.data.get('password')
-        username = User.objects.get(email=email).username
 
-        user = authenticate(username=username, password=password)
+        user = authenticate(username=email, password=password)
         if user is None:
             return Response({'Forbiden': 'Incorrect password or email'}, status=HTTP_403_FORBIDDEN)
 
         self.request.session.create()
-        print('===========')
-        print(self.request.user.id)
+        print(user)
+        self.request.session['user'] = user.id
 
         return Response(UserSerializer(user).data, status=HTTP_200_OK)
 
