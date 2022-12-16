@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+from os.path import splitext
 
 
 def validate_document_name_length(value: str):
@@ -49,16 +50,28 @@ def catalog_path(instance, filename):
     return f"{instance.catalog.name}/{instance.name}{splitext(filename)[-1]}"
 
 
+class Folder(models.Model):
+    name = models.CharField(max_length=20, validators=[validate_folder_name_length])
+    author = models.ForeignKey('User', on_delete=models.CASCADE)
+
+
+def folder_path(instance, filename):
+    return f"{instance.folder.name}/{instance.name}{splitext(filename)[-1]}"
+
 class Document(models.Model):
-    catalog_id = models.ForeignKey('Catalog', on_delete=models.CASCADE, verbose_name='Каталог')
-    author = models.ForeignKey('User', on_delete=models.CASCADE, verbose_name='Автор')
-    is_private = models.BooleanField(default=0, verbose_name='Ограниченный доступ')
+    folder_id = models.ForeignKey('Folder', on_delete=models.CASCADE)
+    author_id = models.ForeignKey('User', on_delete=models.CASCADE)
+    is_private = models.BooleanField(default=0)
 
     name = models.CharField(max_length=30, validators=[validate_document_name_length])
-    disk_path = models.FileField(upload_to=catalog_path)
+    disk_path = models.FilePathField(
+        path="documents/",
+        match=r"{|\.docx$|\.xls$|\.pdf$|\.pptx$|\.ppt$|\.pptm$|\.png$|\.jpeg$|}"
+    )
 
     # должны иметь формат docx, xls, pdf, pptx, ppt, pptm, png, jpeg размером не более 20 mb
 
-    class Meta:
-        verbose_name = 'Документ'
-        verbose_name_plural = 'Документы'
+
+class Folder(models.Model):
+    name = models.CharField(max_length=20, validators=[validate_folder_name_length])
+    author_id = models.ForeignKey('User', on_delete=models.CASCADE)
