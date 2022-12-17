@@ -27,10 +27,17 @@ def catalog_path(instance, filename):
 
 
 class User(AbstractUser):
+    username = None
+    first_name = None
+    last_name = None
+    email = models.EmailField(_("email address"), blank=False, unique=True)
     fio = models.CharField(max_length=256, default='', verbose_name='ФИО')
     department = models.CharField(max_length=256, default='', verbose_name='Отдел')
     birth_date = models.DateField(auto_now=True, verbose_name='Дата рождения')
     extended_access = models.BooleanField(default=0, verbose_name='Расширенный доступ')
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
     class Meta:
         verbose_name = 'Сотрудник'
