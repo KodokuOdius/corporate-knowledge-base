@@ -23,8 +23,10 @@ class CatalogViewSet(mixins.CreateModelMixin,
     serializer_class = CatalogSerializer
 
     def get_queryset(self):
+        if self.request.user.is_staff:
+            return Catalog.objects.all()
         return Catalog.objects.filter(
-            document__is_private__lte=self.request.user.extended_access
+            Q(document__is_private__lte=self.request.user.extended_access)
         ).distinct()
 
     def post(self, request, *args, **kwargs):
@@ -35,8 +37,15 @@ class CatalogViewSet(mixins.CreateModelMixin,
     @action(detail=True, methods=['get'])
     def documents(self, request, pk=None):
         documents = Document.objects.filter(Q(catalog__pk=pk) & Q(is_private__lte=self.request.user.extended_access))
-        return Response([DocumentSerializer(document).data for document in documents])
-
+        if not documents:
+            return Response({'description': 'Not found'}, status=status.HTTP_404_NOT_FOUND)
+        google_doc_viewer = 'https://docs.google.com/viewer?a=v&url='
+        documents_list = []
+        for document in documents:
+            document_data = DocumentSerializer(document).data
+            document_data['view_path'] = google_doc_viewer + request.build_absolute_uri(document.disk_path.url)
+            documents_list.append(document_data)
+        return Response(documents_list)
 
     # def list(self, request, *args, **kwargs):
     #     queryset = self.get_queryset()
@@ -65,23 +74,6 @@ class DocumentViewSet(mixins.CreateModelMixin,
         if self.request.user.is_staff:
             return self.create(request, *args, **kwargs)
         return Response({'description': 'Dont have permission'}, status=status.HTTP_403_FORBIDDEN)
-
-    def list(self, request, *args, **kwargs):
-        documents = self.get_queryset()
-        if len(documents) > 0:
-            google_doc_viewer = 'https://docs.google.com/viewer?a=v&url='
-            documents_list = []
-            
-            for document in documents:
-                document_data = DocumentSerializer(document).data
-                
-                document_data['view_path'] = google_doc_viewer + request.build_absolute_uri(document.disk_path.url)
-
-                documents_list.append(document_data)
-
-            return Response({'documents': documents_list}, status=status.HTTP_200_OK)
-        
-        return Response({'message': 'Documents not found'}, status=status.HTTP_404_NOT_FOUND)
 
     # def retrieve(self, request, pk=None):
     #     documents = self.get_queryset()
