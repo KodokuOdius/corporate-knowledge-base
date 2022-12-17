@@ -1,6 +1,7 @@
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, mixins, status
+from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -31,6 +32,12 @@ class CatalogViewSet(mixins.CreateModelMixin,
             return self.create(request, *args, **kwargs)
         return Response({'description': 'Dont have permission'}, status=status.HTTP_403_FORBIDDEN)
 
+    @action(detail=True, methods=['get'])
+    def documents(self, request, pk=None):
+        documents = Document.objects.filter(Q(catalog__pk=pk) & Q(is_private__lte=self.request.user.extended_access))
+        return Response([DocumentSerializer(document).data for document in documents])
+
+
     # def list(self, request, *args, **kwargs):
     #     queryset = self.get_queryset()
     #     serializer = CatalogSerializer(queryset, many=True)
@@ -42,22 +49,33 @@ class CatalogViewSet(mixins.CreateModelMixin,
     #     return Response(serializer.data)
 
 
-# class DocumentViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
-#     permission_classes = [IsAuthenticated]
-#     serializer_class = DocumentSerializer
-#
-#     def get_queryset(self):
-#         catalog = self.kwargs.get('catalog_id')
-#         return Document.objects.filter(catalog=catalog).filter(
-#             is_private__lte=self.request.user.extended_access
-#         )
-#
-
-class DocumentView(APIView):
+class DocumentViewSet(mixins.CreateModelMixin,
+                      mixins.ListModelMixin,
+                      viewsets.GenericViewSet):
     permission_classes = [IsAuthenticated]
     serializer_class = DocumentSerializer
 
-    def get(self, request, pk=None):
-        catalog = get_object_or_404(Catalog.objects.filter(pk=pk))
-        documents = Document.objects.filter(Q(catalog=catalog) & Q(is_private__lte=self.request.user.extended_access))
-        return Response([self.serializer_class(document).data for document in documents])
+    def get_queryset(self):
+        catalog = self.kwargs.get('catalog_id')
+        return Document.objects.filter(catalog=catalog).filter(
+            is_private__lte=self.request.user.extended_access
+        )
+
+    def post(self, request, *args, **kwargs):
+        if self.request.user.is_staff:
+            return self.create(request, *args, **kwargs)
+        return Response({'description': 'Dont have permission'}, status=status.HTTP_403_FORBIDDEN)
+
+    def retrieve(self, request, pk=None):
+        # TODO просмотр документа
+        pass
+
+# class DocumentView(APIView):
+#     permission_classes = [IsAuthenticated]
+#     serializer_class = DocumentSerializer
+#
+#     def get(self, request, pk=None):
+#         catalog = get_object_or_404(Catalog.objects.filter(pk=pk))
+#         documents = Document.objects.filter(Q(catalog=catalog) & Q(is_private__lte=self.request.user.extended_access))
+#         return Response([self.serializer_class(document).data for document in documents])
+
