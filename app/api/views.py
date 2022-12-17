@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, mixins, status
@@ -6,6 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+
 from .models import User, Catalog, Document
 from .serializers import UserSerializer, CatalogSerializer, DocumentSerializer
 
@@ -13,6 +15,12 @@ from .serializers import UserSerializer, CatalogSerializer, DocumentSerializer
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+class TestAPIView(APIView):
+    def post(self, request):
+        send_mail("shaverma", "message", "abizadubizadesh@gmail.com", ['mixail.rostov04@gmail.com'])
+        return Response({'ok': '123'})
 
 
 class CatalogViewSet(mixins.CreateModelMixin,

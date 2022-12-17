@@ -11,4 +11,5 @@ router.register(r'documents', views.DocumentViewSet, basename='documents')
 urlpatterns = [
     path('', include(router.urls)),
     path('auth/', include('rest_framework.urls')),
+    path('test/', views.TestAPIView.as_view())
 ]
