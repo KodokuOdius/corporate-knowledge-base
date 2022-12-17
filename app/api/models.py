@@ -6,6 +6,8 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import FileExtensionValidator
 
+from .managers import UserManager
+
 
 def validate_document_name_length(value: str):
     if len(value) > 30 or len(value) < 7:
@@ -67,6 +69,8 @@ class User(AbstractUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
+    objects = UserManager()
 
     class Meta:
         verbose_name = 'Сотрудник'
