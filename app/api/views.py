@@ -39,11 +39,11 @@ class CatalogViewSet(mixins.CreateModelMixin,
         documents = Document.objects.filter(Q(catalog__pk=pk) & Q(is_private__lte=self.request.user.extended_access))
         if not documents:
             return Response({'description': 'Not found'}, status=status.HTTP_404_NOT_FOUND)
-        google_doc_viewer = 'https://docs.google.com/viewer?a=v&url='
+        doc_viewer_path = 'https://docs.yandex.ru/docs/view?url='
         documents_list = []
         for document in documents:
             document_data = DocumentSerializer(document).data
-            document_data['view_path'] = google_doc_viewer + request.build_absolute_uri(document.disk_path.url)
+            document_data['view_path'] = doc_viewer_path + request.build_absolute_uri(document.disk_path.url)
             documents_list.append(document_data)
         return Response(documents_list)
 
@@ -66,7 +66,7 @@ class DocumentViewSet(mixins.CreateModelMixin,
 
     def get_queryset(self):
         catalog = self.request.GET.get('catalog_id')
-        return Document.objects.filter(catalog=catalog if catalog.isdigit() else None).filter(
+        return Document.objects.filter(catalog=catalog if catalog is not None and catalog.isdigit() else None).filter(
             is_private__lte=self.request.user.extended_access
         )
 

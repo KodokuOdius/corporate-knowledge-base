@@ -4,22 +4,51 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+from django.core.validators import FileExtensionValidator
 
 
 def validate_document_name_length(value: str):
     if len(value) > 30 or len(value) < 7:
         raise ValidationError(
-            _('length of %(value)s > 30 or < 7'),
+            _('length of "%(value)s" > 30 or < 7'),
             params={'value': value}
         )
+    return value
 
 
 def validate_folder_name_length(value: str):
     if len(value) > 20 or len(value) < 5:
         raise ValidationError(
-            _('length of %(value)s > 30 or < 7'),
+            _('length of "%(value)s" > 30 or < 7'),
             params={'value': value}
         )
+    return value
+
+
+def validate_file_size(value):
+    limit = 20971520
+    if value.size > limit:
+        raise ValidationError(
+            'File too large. Size should not exceed 20 MiB',
+        )  
+    return value
+
+
+def validate_name(value):
+    # Разрешенные символы кириллица, латиница, цифры, спецсимволы “№:()-_.
+
+    from string import ascii_letters, digits
+    cyrillic_letters = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя' + 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'.upper()
+    specific_letters = '“№:()-_.'
+    validate_letters = ascii_letters + digits + cyrillic_letters + specific_letters
+
+    if set(value) - set(validate_letters):
+        raise ValidationError(
+            _('The name "%(value)s" contains unsupported characters'),
+            params={'value': value}
+        )
+    return value
+
 
 
 def catalog_path(instance, filename):
@@ -48,7 +77,7 @@ class User(AbstractUser):
 
 
 class Catalog(models.Model):
-    name = models.CharField(max_length=20, validators=[validate_folder_name_length], verbose_name='Название')
+    name = models.CharField(max_length=20, validators=[validate_folder_name_length, validate_name], verbose_name='Название')
     author = models.ForeignKey('User', on_delete=models.CASCADE, verbose_name='Автор')
 
     class Meta:
@@ -64,10 +93,19 @@ class Document(models.Model):
     author = models.ForeignKey('User', on_delete=models.CASCADE, verbose_name='Автор')
     is_private = models.BooleanField(default=0, verbose_name='Ограниченный доступ')
 
-    name = models.CharField(max_length=30, validators=[validate_document_name_length])
-    disk_path = models.FileField(upload_to=catalog_path)
+    name = models.CharField(max_length=30, validators=[validate_document_name_length, validate_name])
 
     # должны иметь формат docx, xls, pdf, pptx, ppt, pptm, png, jpeg размером не более 20 mb
+    disk_path = models.FileField(
+        upload_to=catalog_path, 
+        validators=[
+            validate_file_size,
+            FileExtensionValidator(
+                ['docx', 'xls', 'pdf', 'pptx', 'ppt', 'pptm', 'png', 'jpeg'], 
+                message=_('File Extension is not supported')
+            )
+        ]
+    )
 
     class Meta:
         verbose_name = 'Документ'

@@ -25,9 +25,10 @@ SECRET_KEY = environ.get('SECRET_KEY',
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = environ.get('DEBAG', False)
+DEBUG = environ.get('DEBAG', True)
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://f435-85-174-194-183.eu.ngrok.io','http://*.127.0.0.1']
 
 AUTH_USER_MODEL = 'api.User'
 
