@@ -26,4 +26,4 @@ class DocumentAdmin(admin.ModelAdmin):
     list_display_links = ('id',)
     list_editable = ('is_private',)
     list_filter = ('catalog',)
-    fields = ('catalog', 'name', 'is_private', 'disk_path',)
+    fields = ('catalog', 'name', 'is_private', 'disk_path', 'author',)
