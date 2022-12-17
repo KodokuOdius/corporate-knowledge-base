@@ -56,8 +56,8 @@ class DocumentViewSet(mixins.CreateModelMixin,
     serializer_class = DocumentSerializer
 
     def get_queryset(self):
-        catalog = self.kwargs.get('catalog_id')
-        return Document.objects.filter(catalog=catalog).filter(
+        catalog = self.request.GET.get('catalog_id')
+        return Document.objects.filter(catalog=catalog if catalog.isdigit() else None).filter(
             is_private__lte=self.request.user.extended_access
         )
 
@@ -66,9 +66,27 @@ class DocumentViewSet(mixins.CreateModelMixin,
             return self.create(request, *args, **kwargs)
         return Response({'description': 'Dont have permission'}, status=status.HTTP_403_FORBIDDEN)
 
-    def retrieve(self, request, pk=None):
-        # TODO просмотр документа
-        pass
+    def list(self, request, *args, **kwargs):
+        documents = self.get_queryset()
+        if len(documents) > 0:
+            google_doc_viewer = 'https://docs.google.com/viewer?a=v&url='
+            documents_list = []
+            
+            for document in documents:
+                document_data = DocumentSerializer(document).data
+                
+                document_data['view_path'] = google_doc_viewer + request.build_absolute_uri(document.disk_path.url)
+
+                documents_list.append(document_data)
+
+            return Response({'documents': documents_list}, status=status.HTTP_200_OK)
+        
+        return Response({'message': 'Documents not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    # def retrieve(self, request, pk=None):
+    #     documents = self.get_queryset()
+    #     return Response({'documents': [DocumentSerializer(doc).data for doc in documents]}, status=status.HTTP_200_OK)
+
 
 # class DocumentView(APIView):
 #     permission_classes = [IsAuthenticated]
