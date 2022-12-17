@@ -12,10 +12,10 @@ class UserSerializer(serializers.ModelSerializer):
 class CatalogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Catalog
-        fields = ['name', 'author']
+        fields = ['id', 'name', 'author']
 
 
 class DocumentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Document
-        fields = ['name', 'catalog', 'author', 'is_private', 'disk_path']
+        fields = ['id', 'name', 'catalog', 'author', 'is_private', 'disk_path']
