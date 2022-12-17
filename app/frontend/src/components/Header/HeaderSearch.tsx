@@ -8,11 +8,9 @@ const HeaderSearch: React.FC = () => {
     return (
         <header className="page-header">
         <div className="container">
-            <NavLink to="/">
                 <img className="logo" src={Logo} alt="Логотип" />
-            </NavLink>
             <form method="get" className="header__form">
-                <input className="header__input" type="text" placeholder="Поиск по каталогу" />
+                <input className="header__input" type="text" placeholder="Поиск" />
             </form>
             <button className="profile-button">
                 <img src={Profile} alt="Профиль" />

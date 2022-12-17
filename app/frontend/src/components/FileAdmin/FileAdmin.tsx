@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
+import HeaderAdmin from '../Header/HeaderAdmin';
+import Profile from '../Image/леша фото.png';
+import File from '../Image/file.svg';
 import { NavLink } from 'react-router-dom';
-import '../Fonts/stylesheet.css';
-import HeaderSearch from '../Header/HeaderSearch';
-import Folder from '../Image/folder.svg';
-import Profile from '../Image/миша фото.png';
 
-const CatalogWorker: React.FC = () => {
+const FileAdmin: React.FC = () => {
 
+    // клик по профилю
     let profile = document.querySelector('.profile-button');
     let modalProfile = document.querySelector('.modal-profile');
     let closeBtnProfile = document.querySelector('.modal-close');
@@ -16,20 +16,10 @@ const CatalogWorker: React.FC = () => {
     })
 
     closeBtnProfile?.addEventListener('click', () => {
-        modalProfile?.classList.toggle('visually-hidden');
+        modalProfile?.classList.add('visually-hidden');
     })
 
-    /*
-    profile.onclick = () => {
-        modalProfile.classList.toggle('visually-hidden');
-    }
-    */
-
-    /*
-    closeBtnProfile.onclick = () => {
-        modalProfile.classList.add('visually-hidden');
-    }
-    */
+    
 
     // клик по папке
     //let folders = document.querySelectorAll('.main__folder');
@@ -68,17 +58,16 @@ const CatalogWorker: React.FC = () => {
     };
 
     return (
-        <><HeaderSearch />
-        <main className="page__main">
+        <><HeaderAdmin /><main className="page__main">
             <div className="container">
                 <section className="main__content">
                     <div className="container">
                         <section className="main__folders">
-                        <article className="main__folder" onContextMenu={showContextMenu} onClick={hideContextMenu}>
-                                <NavLink to="/fileWorker">
-                                    <img src={Folder} alt="Каталог" />
+                            <article className="main__folder" onContextMenu={showContextMenu} onClick={hideContextMenu}>
+                                <a>
+                                    <img src={File} alt="Каталог" />
                                     <span className="folder-name">Название папки</span>
-                                </NavLink>
+                                </a>
                                 {isShow ?  (
                                     <div style={{top: position.y, left: position.x}} className="modal-change">
                                         <button onClick={() => doSomething("Переименовать")}>Переименовать</button>
@@ -88,7 +77,7 @@ const CatalogWorker: React.FC = () => {
                             </article>
                             <article className="main__folder" onContextMenu={showContextMenu} onClick={hideContextMenu}>
                                 <a>
-                                    <img src={Folder} alt="Каталог" />
+                                    <img src={File} alt="Каталог" />
                                     <span className="folder-name">Название папки</span>
                                 </a>
                                 <div className="modal-change visually-hidden">
@@ -98,7 +87,7 @@ const CatalogWorker: React.FC = () => {
                             </article>
                             <article className="main__folder" onContextMenu={showContextMenu} onClick={hideContextMenu}>
                                 <a>
-                                    <img src={Folder} alt="Каталог" />
+                                    <img src={File} alt="Каталог" />
                                     <span className="folder-name">Название папки</span>
                                 </a>
                                 <div className="modal-change visually-hidden">
@@ -108,7 +97,7 @@ const CatalogWorker: React.FC = () => {
                             </article>
                             <article className="main__folder" onContextMenu={showContextMenu} onClick={hideContextMenu}>
                                 <a>
-                                    <img src={Folder} alt="Каталог" />
+                                    <img src={File} alt="Каталог" />
                                     <span className="folder-name">Название папки</span>
                                     </a>
                                 <div className="modal-change visually-hidden">
@@ -118,7 +107,7 @@ const CatalogWorker: React.FC = () => {
                             </article>
                             <article className="main__folder" onContextMenu={showContextMenu} onClick={hideContextMenu}>
                                 <a>
-                                    <img src={Folder} alt="Каталог" />
+                                    <img src={File} alt="Каталог" />
                                     <span className="folder-name">Название папки</span>
                                     </a>
                                 <div className="modal-change visually-hidden">
@@ -128,7 +117,7 @@ const CatalogWorker: React.FC = () => {
                             </article>
                             <article className="main__folder" onContextMenu={showContextMenu} onClick={hideContextMenu}>
                                 <a>
-                                    <img src={Folder} alt="Каталог" />
+                                    <img src={File} alt="Каталог" />
                                     <span className="folder-name">Название папки</span>
                                 </a>
                                 <div className="modal-change visually-hidden">
@@ -138,7 +127,7 @@ const CatalogWorker: React.FC = () => {
                             </article>
                             <article className="main__folder" onContextMenu={showContextMenu} onClick={hideContextMenu}>
                                 <a>
-                                    <img src={Folder} alt="Каталог" />
+                                    <img src={File} alt="Каталог" />
                                     <span className="folder-name">Название папки</span>
                                 </a>
                                 <div className="modal-change visually-hidden">
@@ -148,7 +137,7 @@ const CatalogWorker: React.FC = () => {
                             </article>
                             <article className="main__folder" onContextMenu={showContextMenu} onClick={hideContextMenu}>
                                 <a>
-                                    <img src={Folder} alt="Каталог" />
+                                    <img src={File} alt="Каталог" />
                                     <span className="folder-name">Название папки</span>
                                 </a>
                                 <div className="modal-change visually-hidden">
@@ -158,7 +147,7 @@ const CatalogWorker: React.FC = () => {
                             </article>
                             <article className="main__folder" onContextMenu={showContextMenu} onClick={hideContextMenu}>
                                 <a>
-                                    <img src={Folder} alt="Каталог" />
+                                    <img src={File} alt="Каталог" />
                                     <span className="folder-name">Название папки</span>
                                 </a>
                                 <div className="modal-change visually-hidden">
@@ -168,7 +157,7 @@ const CatalogWorker: React.FC = () => {
                             </article>
                             <article className="main__folder" onContextMenu={showContextMenu} onClick={hideContextMenu}>
                                 <a>
-                                    <img src={Folder} alt="Каталог" />
+                                    <img src={File} alt="Каталог" />
                                     <span className="folder-name">Название папки</span>
                                 </a>
                                 <div className="modal-change visually-hidden">
@@ -178,7 +167,7 @@ const CatalogWorker: React.FC = () => {
                             </article>
                             <article className="main__folder" onContextMenu={showContextMenu} onClick={hideContextMenu}>
                                 <a>
-                                    <img src={Folder} alt="Каталог" />
+                                    <img src={File} alt="Каталог" />
                                     <span className="folder-name">Название папки</span>
                                 </a>
                                 <div className="modal-change visually-hidden">
@@ -188,7 +177,7 @@ const CatalogWorker: React.FC = () => {
                             </article>
                             <article className="main__folder" onContextMenu={showContextMenu} onClick={hideContextMenu}>
                                 <a>
-                                    <img src={Folder} alt="Каталог" />
+                                    <img src={File} alt="Каталог" />
                                     <span className="folder-name">Название папки</span>
                                 </a>
                                 <div className="modal-change visually-hidden">
@@ -199,8 +188,9 @@ const CatalogWorker: React.FC = () => {
                         </section>
                         <div className="modal-profile visually-hidden">
                             <img src={Profile} alt="Аватар" />
-                            <span className="user-name">Александр Л.</span>
+                            <span className="user-name">Довгань А.</span>
                             <NavLink className="modal-profile__link" to="/profileWorker">Профиль</NavLink>
+                            <NavLink className="modal-profile__link" to="/listWorker">Список сотрудников</NavLink>
                             <NavLink className="modal-profile__link" to="/">Выйти</NavLink>
                             <button className="modal-close" type="button">Закрыть</button>
                         </div>
@@ -211,4 +201,4 @@ const CatalogWorker: React.FC = () => {
     )
 }
 
-export default CatalogWorker
+export default FileAdmin

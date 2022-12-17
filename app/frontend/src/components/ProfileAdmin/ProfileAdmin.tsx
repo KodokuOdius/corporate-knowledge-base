@@ -2,6 +2,7 @@ import React from 'react';
 import '../Fonts/stylesheet.css';
 import Commando from '../Image/commando.png';
 import Back from '../Image/back-btn.svg';
+import { NavLink } from 'react-router-dom';
 
 const ProfileAdmin: React.FC = () => {
     return (
@@ -37,7 +38,7 @@ const ProfileAdmin: React.FC = () => {
                                     1
                                 </p>
                             </div>
-                            <a className="link" href="#">Редактировать профиль</a>
+                            <NavLink className="link" to="/editProfile">Редактировать профиль</NavLink>
                         </div>
                     </div>
                 </div>

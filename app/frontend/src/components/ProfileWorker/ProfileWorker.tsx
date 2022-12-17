@@ -1,7 +1,8 @@
 import React from 'react';
 import '../Fonts/stylesheet.css';
-import Avatar from '../Image/html-jun.png';
+import Avatar from '../Image/леша фото б.png';
 import Back from '../Image/back-btn.svg';
+import { NavLink } from 'react-router-dom';
 
 const ProfileWorker = () => {
     return (
@@ -15,33 +16,33 @@ const ProfileWorker = () => {
                                 <img src={Back} alt="Назад" />
                             </button>
                             <div className="left-column">
-                                <p className="user-name--profile">Александр Л.</p>
+                                <p className="user-name--profile">Довгань А.</p>
                             </div>
                             <div className="right-column">
                                 <h2 className="column-title">Профиль</h2>
                                 <div className="profile-data-box">
                                     <p className="profile-data">
                                         <span className="profile-data__name">ФИО</span>
-                                        Литвинов Александр Владимирович
+                                        Довгань Алексей Иванович
                                     </p>
                                     <p className="profile-data">
                                         <span className="profile-data__name">Эл. почта</span>
-                                        zmeelov161rus@yandex.ru
+                                        test@mail.ru
                                     </p>
                                     <p className="profile-data">
                                         <span className="profile-data__name">Отдел</span>
-                                        Отдел по frontend разработке
+                                        Отдел по backend разработке
                                     </p>
                                     <p className="profile-data">
                                         <span className="profile-data__name">Дата рождения</span>
-                                        25.11.2004
+                                        ----
                                     </p>
                                     <p className="profile-data">
                                         <span className="profile-data__name">Уровень доступа</span>
-                                        2
+                                        1
                                     </p>
                                 </div>
-                                <a className="link" href="#">Редактировать профиль</a>
+                                <NavLink className="link" to="/editProfile">Редактировать профиль</NavLink>
                             </div>
                         </div>
                     </div>

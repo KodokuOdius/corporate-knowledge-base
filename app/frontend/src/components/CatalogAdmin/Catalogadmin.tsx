@@ -6,6 +6,7 @@ import Folder from '../Image/folder.svg';
 import Profile from '../Image/леша фото.png';
 
 const CatalogAdmin: React.FC = () => {
+
     // клик по профилю
     let profile = document.querySelector('.profile-button');
     let modalProfile = document.querySelector('.modal-profile');
@@ -16,8 +17,10 @@ const CatalogAdmin: React.FC = () => {
     })
 
     closeBtnProfile?.addEventListener('click', () => {
-        modalProfile?.classList.toggle('visually-hidden');
+        modalProfile?.classList.add('visually-hidden');
     })
+
+    
 
     // клик по папке
     //let folders = document.querySelectorAll('.main__folder');
@@ -87,10 +90,10 @@ const CatalogAdmin: React.FC = () => {
                     <div className="container">
                         <section className="main__folders">
                             <article className="main__folder" onContextMenu={showContextMenu} onClick={hideContextMenu}>
-                                <a>
+                                <NavLink to="/fileAdmin">
                                     <img src={Folder} alt="Каталог" />
                                     <span className="folder-name">Название папки</span>
-                                </a>
+                                </NavLink>
                                 {isShow ?  (
                                     <div style={{top: position.y, left: position.x}} className="modal-change">
                                         <button onClick={() => doSomething("Переименовать")}>Переименовать</button>
@@ -212,7 +215,7 @@ const CatalogAdmin: React.FC = () => {
                         <div className="modal-profile visually-hidden">
                             <img src={Profile} alt="Аватар" />
                             <span className="user-name">Довгань А.</span>
-                            <NavLink className="modal-profile__link" to="/profileadmin">Профиль</NavLink>
+                            <NavLink className="modal-profile__link" to="/profileWorker">Профиль</NavLink>
                             <NavLink className="modal-profile__link" to="/listWorker">Список сотрудников</NavLink>
                             <NavLink className="modal-profile__link" to="/">Выйти</NavLink>
                             <button className="modal-close" type="button">Закрыть</button>

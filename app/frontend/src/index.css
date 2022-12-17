@@ -72,14 +72,14 @@ body {
   color: #fff;
   font-weight: 700;
   font-size: 20px;
-  line-height: 19px;
+
 }
 
 .link {
   color: #FF9E01;
   font-family: 'gotham-light';
   font-size: 15px;
-  line-height: 14px;
+
 }
 
 /* Header */
@@ -112,7 +112,6 @@ main {
 .main__text {
   font-weight: 400;
   font-size: 32px;
-  line-height: 130.7%;
   margin: 0 0 100px;
 }
 
@@ -124,7 +123,6 @@ main {
   width: 500px;
   font-weight: 300;
   font-size: 20px;
-  line-height: 114.4%;
   color: #000;
 }
 
@@ -180,14 +178,13 @@ main {
 }
 
 .right-column {
-  padding: 100px 49px;
+  padding: 60px 49px;
 }
 
 .column-title {
   font-weight: 400;
   font-size: 40px;
-  line-height: 38px;
-  margin: 0 0 118px;
+  margin: 0 0 100px;
   text-align: center;
   background: linear-gradient(180deg, #FF4905 21.88%, #FF8502 93.23%);
   -webkit-background-clip: text;
@@ -204,7 +201,6 @@ main {
   text-align: center;
   font-family: 'gotham-light';
   font-size: 15px;
-  line-height: 14px;
   color: #606060;
 }
 
@@ -220,10 +216,9 @@ main {
 .column-label {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  /* gap: 20px; */
   font-family: 'gotham-light';
   font-size: 20px;
-  line-height: 19px;
   color: #606060;
 }
 
@@ -240,7 +235,6 @@ main {
 .remember-me {
   font-family: 'gotham-light';
   font-size: 15px;
-  line-height: 14px;
   color: #606060;
   display: flex;
   align-items: center;
@@ -287,7 +281,6 @@ main {
 .user-name--profile {
   font-family: 'gotham-light';
   font-size: 26px;
-  line-height: 23px;
   text-align: center;
   z-index: 2;
   color: rgb(189, 188, 188);
@@ -298,12 +291,14 @@ main {
 .profile-data {
   font-family: 'gotham';
   font-size: 20px;
-  line-height: 19px;
   color: #606060;
   display: flex;
   gap: 32px;
-  margin-bottom: 42px;
   flex-direction: column;
+}
+
+.profile-data:not(:last-of-type) {
+  margin-bottom: 42px;
 }
 
 .profile-data__name {
@@ -311,13 +306,12 @@ main {
 }
 
 .profile .column-title {
-  margin-bottom: 40px;
+  margin-bottom: 0;
 }
 
 .profile .link {
   font-weight: 400;
   font-size: 18px;
-  line-height: 14px;
   text-decoration: underline;
   text-align: center;
   display: block;
@@ -345,7 +339,6 @@ main {
 .staff__title {
   font-weight: 400;
   font-size: 40px;
-  line-height: 38px;
   text-align: center;
   background: linear-gradient(180deg, #FF4905 21.88%, #FF8502 93.23%);
   -webkit-background-clip: text;
@@ -383,20 +376,69 @@ main {
   margin-bottom: 10px;
 }
 
+.back {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  width: 54px;
+  height: 54px;
+}
 
+.staff-add {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
 
+/* CreatingProfile */
 
+.add-avatar {
+  position: absolute;
+  left: 283px;
+  top: 420px;
+  z-index: 1;
+  opacity: .9;
+}
 
+.creating-label {
+  position: relative;
+}
 
+.creating-label::after {
+  content: "";
+  background-image: url(../src/components/Image/pen.svg);
+  width: 27px;
+  height: 27px;
+  position: absolute;
+  top: 15px;
+  right: 0;
+}
 
+.creating-link{
+  font-size: 20px !important;
+  margin-top: 30px;
+  text-decoration: none !important;
+  position: relative;
+}
 
+.creating-link::before{
+  content: "";
+  width: 148px;
+  height: 1px;
+  background-color: #FF9E01;
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  transform: translate(-50%);
+}
 
+.creating-input {
+  font-size: 23px;
+}
 
-
-
-
-
-
+.creating-input[type = password] {
+  font-size: 33px;
+}
 
 
 
@@ -518,5 +560,4 @@ main {
 
 .modal-change button {
   font-size: 12px;
-  line-height: 10px;
 }
