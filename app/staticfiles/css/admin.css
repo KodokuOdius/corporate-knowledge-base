@@ -1,0 +1,41 @@
+#header {
+    background: linear-gradient(180deg, rgba(255, 38, 8, 0.74) 0%, rgba(255, 158, 1, 0.92) 100%);;
+}
+
+#branding h1 a:link, #branding h1 a:visited {
+    color: #ffffff;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    background: linear-gradient(180deg, rgba(255, 38, 8, 0.74) 0%, rgba(255, 158, 1, 0.92) 100%);;
+}
+
+div .breadcrumbs {
+    background: #ffffff;
+    color: #000000;
+}
+
+div .breadcrumbs a{
+    color: #747474;
+}
+
+.delete-confirmation form input[type=submit] {
+    border-radius: 10px;
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button,
+.button.default, input[type=submit].default, input[type=submit].default:focus, input[type=submit].default:hover,
+.submit-row input.default {
+background: linear-gradient(180deg, rgba(255, 38, 8, 0.74) 0%, rgba(255, 158, 1, 0.92) 100%);
+border-radius: 10px;
+padding: 10px 20px;
+border: 0;
+color: #fff;
+font-weight: 400;
+font-size: 12px;
+line-height: 14px;
+}
+
+input[type=submit]:hover, input[type=submit]:focus{
+    background: linear-gradient(180deg, rgba(255, 38, 8, 0.74) 0%, rgba(255, 158, 1, 0.92) 100%);
+}
