@@ -59,13 +59,24 @@ def catalog_path(instance, filename):
     return f"{instance.catalog.name}/{instance.name}{splitext(filename)[-1]}"
 
 
+class Department(models.Model):
+    name = models.CharField(max_length=150, verbose_name='Название')
+
+    class Meta:
+        verbose_name = 'Отдел'
+        verbose_name_plural = 'Отделы'
+
+    def __str__(self):
+        return self.name
+
+
 class User(AbstractUser):
     username = None
     first_name = None
     last_name = None
     email = models.EmailField(_("email address"), blank=False, unique=True)
     fio = models.CharField(max_length=256, default='', verbose_name='ФИО')
-    department = models.CharField(max_length=256, default='', verbose_name='Отдел')
+    department = models.ForeignKey(Department, on_delete=models.PROTECT, verbose_name='Отдел', null=True)
     birth_date = models.DateField(auto_now=True, verbose_name='Дата рождения')
     extended_access = models.BooleanField(default=0, verbose_name='Расширенный доступ')
 

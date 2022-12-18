@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, Catalog, Document
+from .models import User, Catalog, Document, Department
 
 
 @admin.register(User)
@@ -27,3 +27,13 @@ class DocumentAdmin(admin.ModelAdmin):
     list_editable = ('is_private',)
     list_filter = ('catalog',)
     fields = ('catalog', 'name', 'is_private', 'disk_path', 'author',)
+
+
+@admin.register(Department)
+class DepartmentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name',)
+    list_display_links = ('id', 'name',)
+    fields = ('name',)
+
+
+admin.site.site_header = 'Администрирование Корпоративной базы знаний'
