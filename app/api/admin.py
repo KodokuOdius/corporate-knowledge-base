@@ -14,10 +14,9 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Catalog)
 class CatalogAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'author',)
+    list_display = ('id', 'name',)
     list_display_links = ('id',)
-    list_filter = ('author',)
-    fields = ('name', 'author',)
+    fields = ('name',)
 
 
 @admin.register(Document)
@@ -26,7 +25,7 @@ class DocumentAdmin(admin.ModelAdmin):
     list_display_links = ('id',)
     list_editable = ('is_private',)
     list_filter = ('catalog',)
-    fields = ('catalog', 'name', 'is_private', 'disk_path', 'author',)
+    fields = ('catalog', 'name', 'is_private', 'disk_path',)
 
 
 @admin.register(Department)

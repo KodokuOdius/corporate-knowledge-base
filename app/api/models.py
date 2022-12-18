@@ -110,7 +110,6 @@ class User(AbstractUser):
 class Catalog(models.Model):
     name = models.CharField(max_length=20, validators=[validate_folder_name_length, validate_name],
                             verbose_name='Название', unique=True)
-    author = models.ForeignKey('User', on_delete=models.CASCADE, verbose_name='Автор')
 
     class Meta:
         verbose_name = 'Каталог'
@@ -122,7 +121,6 @@ class Catalog(models.Model):
 
 class Document(models.Model):
     catalog = models.ForeignKey('Catalog', on_delete=models.CASCADE, verbose_name='Каталог')
-    author = models.ForeignKey('User', on_delete=models.CASCADE, verbose_name='Автор')
     is_private = models.BooleanField(default=0, verbose_name='Ограниченный доступ')
 
     name = models.CharField(max_length=30, validators=[validate_document_name_length, validate_name])
