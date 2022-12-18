@@ -128,11 +128,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-<<<<<<< HEAD
-
 node_modules/
-=======
 migrations/
-
 documents/
->>>>>>> back-end

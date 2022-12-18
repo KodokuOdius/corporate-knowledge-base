@@ -23,11 +23,12 @@ class CatalogViewSet(viewsets.ModelViewSet):
     serializer_class = CatalogSerializer
 
     def get_queryset(self):
-        if self.request.user.is_staff:
-            return Catalog.objects.all()
-        return Catalog.objects.filter(
-            Q(document__is_private__lte=self.request.user.extended_access)
-        ).distinct()
+        if not self.request.user.is_anonymous:
+            if self.request.user.is_staff:
+                return Catalog.objects.all()
+            return Catalog.objects.filter(
+                Q(document__is_private__lte=self.request.user.extended_access)
+            ).distinct()
 
 
 class DocumentViewSet(mixins.CreateModelMixin,
@@ -38,11 +39,12 @@ class DocumentViewSet(mixins.CreateModelMixin,
     serializer_class = DocumentSerializer
 
     def get_queryset(self, catalog_pk=None):
-        if self.request.user.is_staff:
-            return Document.objects.all()
-        return Document.objects.filter(
-                Q(catalog__pk=catalog_pk) & Q(is_private__lte=self.request.user.extended_access)
-            )
+        if not self.request.user.is_anonymous:
+            if self.request.user.is_staff:
+                return Document.objects.all()
+            return Document.objects.filter(
+                    Q(catalog__pk=catalog_pk) & Q(is_private__lte=self.request.user.extended_access)
+                )
 
     def list(self, request, catalog_pk=None):
         queryset = self.get_queryset(catalog_pk)
