@@ -8,7 +8,7 @@ schema_view = get_schema_view(
    openapi.Info(
       title="Корпоративная база знаний",
       default_version='v1',
-      description="Test description",
+      description="Данная площадка была создана для сотрудников нашей компании, в которой они смогут получить доступ к обучающим и рабочим материалам",
       license=openapi.License(name="BSD License"),
    ),
    public=True,

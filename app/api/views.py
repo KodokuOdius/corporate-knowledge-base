@@ -55,6 +55,7 @@ class DocumentViewSet(mixins.CreateModelMixin,
         for document in queryset:
             document_data = DocumentSerializer(document).data
             document_data['view_path'] = doc_viewer_path + request.build_absolute_uri(document.disk_path.url)
+            document_data['disk_path'] = request.build_absolute_uri(document.disk_path.url)
             documents_list.append(document_data)
         return Response(documents_list)
 

@@ -15,7 +15,7 @@ RUN pip install -r requirements.txt
 
 # install psycopg2 dependencies
 # RUN apt update && apk add postgresql-dev gcc python3-dev musl-dev
-RUN apt-get update && apt-get install netcat -y
+# RUN apt-get update && apt-get install netcat -y
 
 # copy project
 COPY . .

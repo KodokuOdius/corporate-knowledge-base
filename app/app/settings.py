@@ -30,10 +30,8 @@ DEBUG = environ.get('DEBAG', True)
 ALLOWED_HOSTS = ['*']
 # COMPRESS_ENABLED = environ.get('COMPRESS_ENABLED', False)
 CSRF_TRUSTED_ORIGINS = [
-    'https://f435-85-174-194-183.eu.ngrok.io',
     'http://*.127.0.0.1',
-    'https://ebf1-85-174-207-44.eu.ngrok.io',
-    'https://9aef-85-174-207-44.eu.ngrok.io'
+    'https://9aef-85-174-207-44.eu.ngrok.io',
 ]
 
 AUTH_USER_MODEL = 'api.User'

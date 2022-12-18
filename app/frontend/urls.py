@@ -5,7 +5,7 @@ urlpatterns = [
     # path('<path:route>', index),
     path('', index),
     path('signUp/', index),
-    path('registration/', index),
+    # path('registration/', index),
     path('catalogWorker/', index),
     path('catalogAdmin/', index),
     path('fileWorker/', index),

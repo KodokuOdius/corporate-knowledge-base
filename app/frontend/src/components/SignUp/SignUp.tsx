@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 // import '../Fonts/stylesheet.css';
 
 const SignUp: React.FC = () => {
+
+
+    // useEffect(() => {
+    //     console.log('Саня - ГЕЙ!!')
+    // }, [])
 
     return (
         <main className="page__main">
@@ -25,7 +30,7 @@ const SignUp: React.FC = () => {
                                     <input type="checkbox" />
                                     Запомнить меня
                                 </label>
-                                <a className="forgot-pass link" href="#">Забыли пароль?</a>
+                                {/* <a className="forgot-pass link" href="#">Забыли пароль?</a> */}
                             </div>
                             <NavLink to="/catalogAdmin">
                                 <button className="button avtorisation-button">Войти</button>
