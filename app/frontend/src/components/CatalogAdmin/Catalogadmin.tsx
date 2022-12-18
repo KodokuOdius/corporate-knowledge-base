@@ -83,13 +83,71 @@ const CatalogAdmin: React.FC = () => {
     }
     */
 
-
     useEffect(() => {
-        document.cookie = 'sessionid:fm8gu6zam68n4j40kdi3i0asa48odx05';
-        fetch('./api/catalogs'
-        ).then(res => console.log(res)
-        ).then(data => console.log(data)
+        const getCookie = (name: string) => {
+            let cookieValue = "";
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    };
+                };
+            };
+            return cookieValue;
+        };
+
+
+        fetch('/api/auth/login/', {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS',
+                // 'X-CSRFToken':  token
+            },
+            method: 'GET',
+            mode: 'no-cors',
+            // body: JSON.stringify({
+            //     email: 'qwe@qwe.qwe',
+            //     password: 'qwe'
+            // })
+        }
+        ).then(res => res.text()
+        ).then(data => {
+            console.log(data)
+            const token = getCookie('csrftoken');
+            const wtoken = getCookie('csrfmiddlewaretoken');
+            console.log(token);
+            console.log(wtoken);
+            const headers = new Headers();
+            console.log(headers.get('csrftoken'))
+
+            var parser = new DOMParser();
+            // Parse the text
+            var doc = parser.parseFromString(data, "text/html");
+
+            const token_input = doc.querySelector<HTMLInputElement>('input[name="csrfmiddlewaretoken"]');
+            console.log(token_input?.value);
+        }
         ).catch(err => console.warn(err));
+
+        // fetch('/api/catalogs/',
+        //     {
+        //         headers: {
+        //             'Accept': 'application/json',
+        //             'Content-Type': 'application/json',
+        //             'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS',
+        //             'X-CSRFToken': getCookie("csrftoken"),
+        //             'sessionid': 'fm8gu6zam68n4j40kdi3i0asa48odx05'
+        //         },
+        //         method: 'GET',
+        //         mode: 'no-cors'
+        //     }
+        // ).then(res => res.json()
+        // ).then(data => console.log(data)
+        // ).catch(err => console.warn(err));
     }, []);
 
     return (
@@ -236,4 +294,4 @@ const CatalogAdmin: React.FC = () => {
     )
 }
 
-export default CatalogAdmin
+export default CatalogAdmin;
