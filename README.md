@@ -1,5 +1,3 @@
-## To start App
+## Database Shema
 
-```bash
-sudo docker-compose up -d --build
-```
+
