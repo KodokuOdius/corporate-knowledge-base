@@ -28,7 +28,12 @@ SECRET_KEY = environ.get('SECRET_KEY',
 DEBUG = environ.get('DEBAG', True)
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://f435-85-174-194-183.eu.ngrok.io','http://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = [
+    'https://f435-85-174-194-183.eu.ngrok.io',
+    'http://*.127.0.0.1',
+    'https://ebf1-85-174-207-44.eu.ngrok.io',
+    'https://9aef-85-174-207-44.eu.ngrok.io'
+]
 
 AUTH_USER_MODEL = 'api.User'
 
@@ -140,10 +145,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 
-EMAIL_HOST_USER = ''
+EMAIL_HOST_USER = 'kododoku@yandex.ru'
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = 'kbomrtbaprnylqat'
 
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
