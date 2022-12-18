@@ -1,12 +1,15 @@
 from os.path import splitext
 
+from django.contrib.auth.hashers import make_password
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import FileExtensionValidator
+from django.core.mail import send_mail
 
 from .managers import UserManager
+from django.conf import settings
 
 
 def validate_document_name_length(value: str):
@@ -52,7 +55,6 @@ def validate_name(value):
     return value
 
 
-
 def catalog_path(instance, filename):
     return f"{instance.catalog.name}/{instance.name}{splitext(filename)[-1]}"
 
@@ -77,11 +79,26 @@ class User(AbstractUser):
         verbose_name_plural = 'Сотрудники'
 
     def __str__(self):
-        return str(self.fio)
+        return str(self.email)
+
+    def save(self, *args, **kwargs):
+        if not self.password:
+            password = User.objects.make_random_password()
+            self._password = password
+            self.password = make_password(password)
+        send_mail(
+            subject='Корпоративная база знаний',
+            message='Вы зарегистрированы в системе Корпоративной базы знаний\n'
+                    f'Ваш логин - {self.email}, пароль - {self._password}',
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=[self.email],
+        )
+        super().save()
 
 
 class Catalog(models.Model):
-    name = models.CharField(max_length=20, validators=[validate_folder_name_length, validate_name], verbose_name='Название')
+    name = models.CharField(max_length=20, validators=[validate_folder_name_length, validate_name],
+                            verbose_name='Название', unique=True)
     author = models.ForeignKey('User', on_delete=models.CASCADE, verbose_name='Автор')
 
     class Meta:
