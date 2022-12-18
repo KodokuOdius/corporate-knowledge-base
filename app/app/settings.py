@@ -32,7 +32,8 @@ ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = [
     'https://*.ngrok.io',
     'http://*.127.0.0.1:8000',
-    'http://localhost:8000'
+    'http://localhost:8000',
+    'https://9aef-85-174-207-44.eu.ngrok.io'
 ]
 
 AUTH_USER_MODEL = 'api.User'
