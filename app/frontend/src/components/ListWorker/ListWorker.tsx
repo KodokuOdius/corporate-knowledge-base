@@ -7,8 +7,6 @@ import AvatarDo from '../Image/леша фото.png';
 import AvatarTo from '../Image/нет фото.png';
 import AvatarMi from '../Image/миша фото.png';
 import Back from '../Image/back-btn.svg';
-import Add from '../Image/add-btn.svg';
-import { NavLink } from 'react-router-dom';
 
 const ListWorker: React.FC = () => {
     return (
@@ -18,11 +16,6 @@ const ListWorker: React.FC = () => {
                     <button className="back-btn">
                         <img src={Back} alt="Назад" />
                     </button>
-                    <NavLink to="/createProfile">
-                    <button className="staff-add">
-                        <img src={Add} alt="Назад" />
-                    </button>
-                    </NavLink>
                     <h1 className="staff__title">Список сотрудников</h1>
                     <ul className="staff__list">
                         <li className="staff__item">

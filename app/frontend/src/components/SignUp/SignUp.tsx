@@ -30,7 +30,6 @@ const SignUp: React.FC = () => {
                             <NavLink to="/catalogAdmin">
                                 <button className="button avtorisation-button">Войти</button>
                             </NavLink>
-                            <p>Нет профиля? <NavLink className="link" to="/registration">Зарегистрируйтесь!</NavLink></p>
                         </form>
                     </div>
                 </div>
