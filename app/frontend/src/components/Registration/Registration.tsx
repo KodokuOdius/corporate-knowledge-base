@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import '../Fonts/stylesheet.css';
+// import '../Fonts/stylesheet.css';
 
 const Registration: React.FC = () => {
 

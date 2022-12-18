@@ -1,6 +1,6 @@
 import React from 'react';
-import '../Fonts/stylesheet.css';
-import Avatar from '../Image/леша фото б.png';
+// import '../Fonts/stylesheet.css';
+import Avatar from '../Image/lexa6.png';
 import Back from '../Image/back-btn.svg';
 import { NavLink } from 'react-router-dom';
 

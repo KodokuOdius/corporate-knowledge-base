@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import '../Fonts/stylesheet.css';
+// import '../Fonts/stylesheet.css';
 import HeaderSearch from '../Header/HeaderSearch';
 import Folder from '../Image/folder.svg';
-import Profile from '../Image/миша фото.png';
+import Profile from '../Image/misha.png';
 
 const CatalogWorker: React.FC = () => {
 

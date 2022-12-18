@@ -28,7 +28,7 @@ SECRET_KEY = environ.get('SECRET_KEY',
 DEBUG = environ.get('DEBAG', True)
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://f435-85-174-194-183.eu.ngrok.io','http://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://*.ngrok.io','http://*.127.0.0.1']
 
 AUTH_USER_MODEL = 'api.User'
 
@@ -44,6 +44,8 @@ INSTALLED_APPS = [
 
     'api.apps.ApiConfig',
     'rest_framework',
+
+    'frontend.apps.FrontendConfig',
 ]
 
 MIDDLEWARE = [

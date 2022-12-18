@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import '../Fonts/stylesheet.css';
+// import '../Fonts/stylesheet.css';
 import HeaderAdmin from '../Header/HeaderAdmin';
 import Folder from '../Image/folder.svg';
-import Profile from '../Image/леша фото.png';
+import Profile from '../Image/lexa.png';
 
 const CatalogAdmin: React.FC = () => {
 
@@ -20,7 +20,7 @@ const CatalogAdmin: React.FC = () => {
         modalProfile?.classList.add('visually-hidden');
     })
 
-    
+
 
     // клик по папке
     //let folders = document.querySelectorAll('.main__folder');
@@ -30,7 +30,7 @@ const CatalogAdmin: React.FC = () => {
     const [isShow, setIsShow] = useState(false);
 
     // позиция контекстного меню
-    const [position, setPosition] = useState({x: 0, y: 0});
+    const [position, setPosition] = useState({ x: 0, y: 0 });
 
     // отображение контекстного меню
     const showContextMenu = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -40,7 +40,7 @@ const CatalogAdmin: React.FC = () => {
         setIsShow(false);
         const newPosition = {
             x: event.pageX - 330,
-            y: event.pageY -280,
+            y: event.pageY - 280,
         };
 
         setPosition(newPosition);
@@ -83,6 +83,15 @@ const CatalogAdmin: React.FC = () => {
     }
     */
 
+
+    useEffect(() => {
+        document.cookie = 'sessionid:fm8gu6zam68n4j40kdi3i0asa48odx05';
+        fetch('./api/catalogs'
+        ).then(res => console.log(res)
+        ).then(data => console.log(data)
+        ).catch(err => console.warn(err));
+    }, []);
+
     return (
         <><HeaderAdmin /><main className="page__main">
             <div className="container">
@@ -94,8 +103,8 @@ const CatalogAdmin: React.FC = () => {
                                     <img src={Folder} alt="Каталог" />
                                     <span className="folder-name">Название папки</span>
                                 </NavLink>
-                                {isShow ?  (
-                                    <div style={{top: position.y, left: position.x}} className="modal-change">
+                                {isShow ? (
+                                    <div style={{ top: position.y, left: position.x }} className="modal-change">
                                         <button onClick={() => doSomething("Переименовать")}>Переименовать</button>
                                         <button onClick={() => doSomething("Удалить")}>Удалить</button>
                                     </div>
@@ -125,7 +134,7 @@ const CatalogAdmin: React.FC = () => {
                                 <a>
                                     <img src={Folder} alt="Каталог" />
                                     <span className="folder-name">Название папки</span>
-                                    </a>
+                                </a>
                                 <div className="modal-change visually-hidden">
                                     <button>Переименовать</button>
                                     <button>Удалить</button>
@@ -135,7 +144,7 @@ const CatalogAdmin: React.FC = () => {
                                 <a>
                                     <img src={Folder} alt="Каталог" />
                                     <span className="folder-name">Название папки</span>
-                                    </a>
+                                </a>
                                 <div className="modal-change visually-hidden">
                                     <button>Переименовать</button>
                                     <button>Удалить</button>

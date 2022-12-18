@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Fonts/stylesheet.css';
+// import '../Fonts/stylesheet.css';
 import Commando from '../Image/commando.png';
 import Back from '../Image/back-btn.svg';
 import { NavLink } from 'react-router-dom';

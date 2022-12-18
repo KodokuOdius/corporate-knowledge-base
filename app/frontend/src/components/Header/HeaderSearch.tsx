@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import '../Fonts/stylesheet.css';
+// import '../Fonts/stylesheet.css';
 import Logo from '../Image/logo.png';
 import Profile from '../Image/profile.svg';
 

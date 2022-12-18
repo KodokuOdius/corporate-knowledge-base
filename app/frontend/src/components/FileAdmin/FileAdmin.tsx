@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import HeaderAdmin from '../Header/HeaderAdmin';
-import Profile from '../Image/леша фото.png';
+import Profile from '../Image/lexa.png';
 import File from '../Image/file.svg';
 import { NavLink } from 'react-router-dom';
 

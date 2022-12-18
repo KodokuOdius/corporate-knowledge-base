@@ -1,6 +1,23 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap'); */
+/* @font-face {
+  font-family: 'gotham-bold';
+  src: url(./components/Fonts/gothampro_bold.ttf);
+  font-weight: 700;
+  font-style: normal;
+}
 
-/* Global */
+@font-face {
+  font-family: 'gotham';
+  src: url(./components/Fonts/gothampro.ttf);
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'gotham-light';
+  src: url(./components/Fonts/gothampro_light.ttf);
+  font-weight: 400;
+  font-style: normal;
+} */
 
 .visually-hidden {
   position: absolute;
@@ -51,9 +68,9 @@ body {
   height: 100vh;
   font-family: 'gotham', 'Arial', sans-serif;
   margin: 0 auto;
-  background-image: url(../src/components/Image/fon.svg);
+  background-image: url(./components/Image/fon.svg);
   background-repeat: no-repeat;
-  background-position: left;  
+  background-position: left;
   background-attachment: fixed;
   background-size: 100% 100vh;
 }
@@ -84,7 +101,7 @@ body {
 
 /* Header */
 
-.page-header .container{
+.page-header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -103,7 +120,7 @@ main {
 .main__title {
   font-family: 'gotham-bold';
   font-size: 208px;
-  background: linear-gradient(180.9deg, rgba(255, 38, 8, 0.74) 0.77%, rgba(255, 158, 1, 0.92) 86.98%); 
+  background: linear-gradient(180.9deg, rgba(255, 38, 8, 0.74) 0.77%, rgba(255, 158, 1, 0.92) 86.98%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0 0 50px;
@@ -130,16 +147,16 @@ main {
   position: relative;
 }
 
-.header__form::after{
+.header__form::after {
   content: "";
-  background-image: url(../src/components/Image/magnifier.svg);
+  background-image: url(./components/Image/magnifier.svg);
   width: 31px;
   height: 31px;
   position: absolute;
   right: 40px;
   top: 13px;
   cursor: pointer;
-}   
+}
 
 /* Folders */
 
@@ -169,11 +186,11 @@ main {
   background-color: #FBFBFB;
   display: grid;
   grid-template-columns: 635px 635px;
-  box-shadow: 0px 4px 17px 3px rgba(0, 0, 0, 0.25);   
+  box-shadow: 0px 4px 17px 3px rgba(0, 0, 0, 0.25);
 }
 
 .left-column {
-  background: url(../src/components/Image/avtorisation-fon.png) no-repeat;
+  background: url(./components/Image/avtorisation-fon.png) no-repeat;
   mix-blend-mode: difference;
 }
 
@@ -196,7 +213,7 @@ main {
   flex-direction: column;
 }
 
-.column-form p{
+.column-form p {
   margin-top: 22px;
   text-align: center;
   font-family: 'gotham-light';
@@ -226,7 +243,7 @@ main {
   margin-bottom: 78px;
 }
 
-.column-form div{
+.column-form div {
   margin-top: 22px;
   display: flex;
   justify-content: space-between;
@@ -241,11 +258,11 @@ main {
   gap: 8px;
 }
 
-.remember-me input{
+.remember-me input {
   margin: 0;
 }
 
-.avtorisation-button { 
+.avtorisation-button {
   font-family: 'gotham-bold';
   align-self: center;
   width: 214px;
@@ -255,11 +272,11 @@ main {
 
 /* Registration */
 
-.remember-me span{
+.remember-me span {
   text-decoration: underline;
 }
 
-.registration-box .column-label:not(:last-of-type){
+.registration-box .column-label:not(:last-of-type) {
   margin-bottom: 36px;
 }
 
@@ -360,17 +377,17 @@ main {
   text-align: center;
 }
 
-.staff__item img{
+.staff__item img {
   width: 88px;
   height: 88px;
 }
 
-.staff__item span{
+.staff__item span {
   color: #606060;
   font-size: 12px;
 }
 
-.staff__item span:first-of-type{
+.staff__item span:first-of-type {
   display: block;
   font-size: 15px;
   margin-bottom: 10px;
@@ -406,7 +423,7 @@ main {
 
 .creating-label::after {
   content: "";
-  background-image: url(../src/components/Image/pen.svg);
+  background-image: url(./components/Image/pen.svg);
   width: 27px;
   height: 27px;
   position: absolute;
@@ -414,14 +431,14 @@ main {
   right: 0;
 }
 
-.creating-link{
+.creating-link {
   font-size: 20px !important;
   margin-top: 30px;
   text-decoration: none !important;
   position: relative;
 }
 
-.creating-link::before{
+.creating-link::before {
   content: "";
   width: 148px;
   height: 1px;
@@ -436,7 +453,7 @@ main {
   font-size: 23px;
 }
 
-.creating-input[type = password] {
+.creating-input[type=password] {
   font-size: 33px;
 }
 
@@ -471,6 +488,7 @@ main {
 .user-name {
   margin-bottom: 20px;
 }
+
 /* 
 .modal-profile__link::before {
   content: "";
@@ -500,7 +518,9 @@ main {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-.modal-close:before, .modal-close:after {
+
+.modal-close:before,
+.modal-close:after {
   content: "";
   position: absolute;
   top: 10px;
@@ -510,16 +530,22 @@ main {
   background-color: #FF2608;
   border-radius: 1px;
 }
-*, *:after, *:before {
+
+*,
+*:after,
+*:before {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 .modal-close:after {
   -webkit-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
-.modal-close:before, .modal-close:after {
+
+.modal-close:before,
+.modal-close:after {
   content: "";
   position: absolute;
   top: 10px;

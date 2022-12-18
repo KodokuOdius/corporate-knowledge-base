@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import '../Fonts/stylesheet.css';
-import Profile from '../Image/леша фото.png';
+// import '../Fonts/stylesheet.css';
+import Profile from '../Image/lexa.png';
 import File from '../Image/file.svg';
 import HeaderSearch from '../Header/HeaderSearch';
 

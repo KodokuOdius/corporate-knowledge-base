@@ -1,11 +1,11 @@
 import React from 'react';
-import '../Fonts/stylesheet.css';
+// import '../Fonts/stylesheet.css';
 import AvatarAl from '../Image/html-jun.png';
-import AvatarLe from '../Image/лера фото.png';
-import AvatarOk from '../Image/оксана фото.png';
-import AvatarDo from '../Image/леша фото.png';
-import AvatarTo from '../Image/нет фото.png';
-import AvatarMi from '../Image/миша фото.png';
+import AvatarLe from '../Image/lera.png';
+import AvatarOk from '../Image/oksana.png';
+import AvatarDo from '../Image/lexa.png';
+import AvatarTo from '../Image/no_photo.png';
+import AvatarMi from '../Image/misha.png';
 import Back from '../Image/back-btn.svg';
 import Add from '../Image/add-btn.svg';
 import { NavLink } from 'react-router-dom';

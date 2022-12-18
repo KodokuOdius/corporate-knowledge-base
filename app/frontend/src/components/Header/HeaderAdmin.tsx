@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Fonts/stylesheet.css';
+// import '../Fonts/stylesheet.css';
 import Logo from '../Image/logo.png';
 import Profile from '../Image/profile.svg';
 import Plus from '../Image/add-btn.svg';

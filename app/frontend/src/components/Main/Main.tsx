@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Fonts/stylesheet.css';
+// import '../Fonts/stylesheet.css';
 import Header from '../Header/Header';
 
 const Main: React.FC = () => {
