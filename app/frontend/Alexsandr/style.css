@@ -444,9 +444,8 @@ main {
 /* Modal */
 
 .modal-profile {
-    display: none;
-    top: -50px;
-    right: 50px;
+    top: -250px;
+    right: 70px;
     text-align: center;
     align-items: center;
     white-space: nowrap;
@@ -553,10 +552,47 @@ main {
     align-items: center;
     justify-content: center;
     gap: 22px;
-    z-index: 1;
 }
 
 
 .modal-change button {
     font-size: 12px;
+}
+
+/* Modal add */
+
+.modal-add {
+
+    top: -10px;
+    right: 10px;
+    text-align: center;
+    align-items: center;
+    position: absolute;
+    box-shadow: 5px 5px 19px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    background-color: #fff;
+    width: 256px;
+    height: 268px;
+    padding: 50px 100px 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-input {
+    font-family: 'gotham-light';
+    text-align: center;
+    border: 0;
+    border-bottom: 1px solid #464646;
+    font-size: 14px;
+    outline: 0;
+    color: #A6A6A6;
+    margin-top: 10px;
+}
+
+.add-link {
+    font-size: 14px !important;
+}
+
+.add-link::before {
+    width: 73px;
 }

@@ -12,15 +12,38 @@ const CatalogAdmin: React.FC = () => {
     let modalProfile = document.querySelector('.modal-profile');
     let closeBtnProfile = document.querySelector('.modal-close');
 
+    // создание каталога
+    let addBtn = document.querySelector('.add-btn');
+    let modalAdd = document.querySelector('.modal-add');
+    let closeBtnAdd = document.querySelector('.modal-close--add');
+
     profile?.addEventListener('click', () => {
         modalProfile?.classList.toggle('visually-hidden');
+        console.log(1);
     })
 
     closeBtnProfile?.addEventListener('click', () => {
         modalProfile?.classList.add('visually-hidden');
     })
 
+    addBtn?.addEventListener('click', () => {
+        modalAdd?.classList.toggle('visually-hidden');
+        console.log(1);
+    })
+
+    closeBtnAdd?.addEventListener('click', () => {
+        modalAdd?.classList.add('visually-hidden');
+    })
+    /*
+    addBtn.onclick = () => {
+    modalAdd.classList.toggle('visually-hidden');
+    }
     
+
+    closeBtnAdd.onclick = () => {
+    modalAdd.classList.add('visually-hidden');
+    }
+    */
 
     // клик по папке
     //let folders = document.querySelectorAll('.main__folder');
@@ -219,6 +242,12 @@ const CatalogAdmin: React.FC = () => {
                             <NavLink className="modal-profile__link" to="/listWorker">Список сотрудников</NavLink>
                             <NavLink className="modal-profile__link" to="/">Выйти</NavLink>
                             <button className="modal-close" type="button">Закрыть</button>
+                        </div>
+                        <div className="modal-add visually-hidden">
+                            <img src={Folder} width="92px" alt="" />
+                            <input className="add-input" type="text" placeholder="Введите название" />
+                            <a className="link creating-link add-link" href="#">Создать</a>
+                            <button className="modal-close modal-close--add" type="button">Закрыть</button>
                         </div>
                     </div>
                 </section>
