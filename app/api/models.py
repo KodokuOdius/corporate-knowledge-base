@@ -86,13 +86,13 @@ class User(AbstractUser):
             password = User.objects.make_random_password()
             self._password = password
             self.password = make_password(password)
-        send_mail(
-            subject='Корпоративная база знаний',
-            message='Вы зарегистрированы в системе Корпоративной базы знаний\n'
-                    f'Ваш логин - {self.email}, пароль - {self._password}',
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[self.email],
-        )
+            send_mail(
+                subject='Корпоративная база знаний',
+                message='Вы зарегистрированы в системе Корпоративной базы знаний\n'
+                        f'Ваш логин - {self.email}, пароль - {self._password}',
+                from_email=settings.EMAIL_HOST_USER,
+                recipient_list=[self.email],
+            )
         super().save()
 
 

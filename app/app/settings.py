@@ -28,7 +28,12 @@ SECRET_KEY = environ.get('SECRET_KEY',
 DEBUG = environ.get('DEBAG', True)
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://*.ngrok.io','http://*.127.0.0.1']
+# COMPRESS_ENABLED = environ.get('COMPRESS_ENABLED', False)
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.ngrok.io',
+    'http://*.127.0.0.1:8000',
+    'http://localhost:8000'
+]
 
 AUTH_USER_MODEL = 'api.User'
 
@@ -131,7 +136,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles/'
 MEDIA_ROOT = BASE_DIR / 'documents/'
 MEDIA_URL = '/documents/'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -151,3 +156,10 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+
+CORS_ALLOWED_ORIGINS = ['*']
+
+
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True

@@ -23,8 +23,6 @@ class CatalogViewSet(viewsets.ModelViewSet):
     serializer_class = CatalogSerializer
 
     def get_queryset(self):
-        print('===================')
-        print(self.request.COOKIES)
         if self.request.user.is_staff:
             return Catalog.objects.all()
         return Catalog.objects.filter(
